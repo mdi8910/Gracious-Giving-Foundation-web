@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gracious Giving Foundation - Donate</title>
+    <title>Gracious Giving Foundation</title>
+
     <style>
-        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary-color: #2E8B57; /* SeaGreen */
-            --secondary-color: #FFD700; /* Gold */
-            --text-color: #333333;
+            --primary-color: #2E8B57;
+            --secondary-color: #FFD700;
+            --text-color: #333;
+            --white: #fff;
             --light-bg: #f9f9f9;
-            --white: #ffffff;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         * {
@@ -22,148 +21,206 @@
         }
 
         body {
-            font-family: var(--font-main);
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--white);
+            font-family: Arial, sans-serif;
         }
 
-        a { text-decoration: none; }
-
-        /* --- LOGO & NAVIGATION --- */
+        /* HEADER */
         header {
-            background-color: var(--white);
-            padding: 20px 5%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 5%;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
         }
 
-        .logo {
-            font-size: 0.5rem;
-            font-weight: 500;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
         .logo img {
-    height: 80px;
-    width: auto;
-}
+            height: 70px;
+        }
 
         .btn-donate-header {
-            background-color: var(--primary-color);
-            color: var(--white);
+            background: var(--primary-color);
+            color: white;
             padding: 10px 20px;
             border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
+            text-decoration: none;
         }
 
-        .btn-donate-header:hover {
-            background-color: #1e5e39;
-        }
-
-        /* --- SECTION 1: ABOUT --- */
+        /* ABOUT */
         #about {
             padding: 60px 5%;
             max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content {
-            text-align: left;
-            background: var(--white);
+            margin: auto;
         }
 
         .about-content h1 {
-            font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 20px;
-            text-align: center;
         }
 
         .about-content p {
             margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: #555;
+            line-height: 1.6;
         }
 
-        .founder-quote {
-            border-left: 5px solid var(--primary-color);
-            padding-left: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            color: #444;
-            font-size: 1.2rem;
-        }
-
-        .donation-box {
-            background-color: var(--light-bg);
-            border: 2px solid var(--secondary-color);
-            padding: 30px;
-            margin-top: 40px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .donation-box h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .bank-details {
-            font-family: monospace;
-            background: #eee;
-            padding: 10px;
-            display: inline-block;
-            margin: 10px 0;
-        }
-
-        /* --- NEW SECTION: GALLERY --- */
+        /* GALLERY */
         #gallery {
             padding: 60px 5%;
-            background-color: var(--white);
             text-align: center;
+            background: var(--light-bg);
         }
 
         #gallery h2 {
-            color: var(--primary-color);
             margin-bottom: 30px;
-            font-size: 2rem;
+            color: var(--primary-color);
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
         }
 
         .gallery-item {
-            position: relative;
+            height: 250px;
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            height: 250px; /* Fixed height for uniformity */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures image covers the box without stretching */
-            transition: transform 0.3s ease;
+            object-fit: cover;
+            transition: 0.3s;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1); /* Zoom effect on hover */
+        .gallery-item img:hover {
+            transform: scale(1.1);
         }
+
+        /* LIGHTBOX (POPUP IMAGE) */
+        #lightbox {
+            position: fixed;
+            display: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        /* CONTACT */
+        #contact {
+            padding: 60px 5%;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <img src="15a20796-f246-4189-bc36-fbaa580565fd.JPG" alt="Logo">
+    </div>
+
+    <a href="#contact" class="btn-donate-header">Contact Us</a>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="about-content">
+        <h1>Gracious Giving Foundation</h1>
+        <p>We support widows and vulnerable families through charity and outreach programs.</p>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+    <h2>Our Impact in Pictures</h2>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="unnamed.jpg" onclick="openImage(this)">
+        </div>
+
+        <div class="gallery-item">
+            <img src="image0.jpeg" onclick="openImage(this)">
+        </div>
+
+        <div class="gallery-item">
+            <img src="image1.jpeg" onclick="openImage(this)">
+        </div>
+
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeImage()">
+    <img id="lightbox-img">
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+        <textarea placeholder="Message"></textarea>
+
+        <button>Send Message</button>
+    </div>
+</section>
+
+<!-- SCRIPT -->
+<script>
+function openImage(img) {
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("lightbox-img").src = img.src;
+}
+
+function closeImage() {
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
+
+</body>
+</html>
 
         /* --- SECTION 2: CONTACT --- */
         #contact {
@@ -307,24 +364,26 @@
         </div>
     </section>
 
-    <!-- SECTION 2: GALLERY (PICTURES) -->
-    <section id="gallery">
-        <h2>Our Impact in Pictures</h2>
-        <div class="gallery-grid">
-            <!-- Image 1 -->
-            <div class="gallery-item">
-                <img src="unnamed.jpg">
-            </div>
-            <!-- Image 2 -->
-            <div class="gallery-item">
-                <img src="image0.jpeg">
-            </div>
-            <!-- Image 3 -->
-            <div class="gallery-item">
-                <img src="image1.jpg" alt="Community Outreach">
-            </div>
+   <!-- GALLERY -->
+<section id="gallery">
+    <h2>Our Impact in Pictures</h2>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="unnamed.jpg" onclick="openImage(this)">
         </div>
-    </section>
+
+        <div class="gallery-item">
+            <img src="image0.jpeg" onclick="openImage(this)">
+        </div>
+
+        <div class="gallery-item">
+            <img src="image1.jpeg" onclick="openImage(this)">
+        </div>
+
+    </div>
+</section>
 
     <!-- SECTION 3: CONTACT -->
     <div class="contact-wrapper">
