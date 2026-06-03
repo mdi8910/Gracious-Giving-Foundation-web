@@ -204,93 +204,90 @@
             transform: scale(1.1);
         }
 
-        /* --- CONTACT SECTION --- */
-        #contact {
-            background-color: var(--white);
-        }
-
+             /* --- CONTACT SECTION STYLES --- */
         .contact-wrapper {
             display: flex;
             flex-wrap: wrap;
             gap: 40px;
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             justify-content: center;
+            align-items: flex-start;
         }
 
-        .contact-container, 
-        .contact-info {
+        /* Left Side Box */
+        .contact-box {
             flex: 1;
             min-width: 300px;
-            background: var(--white);
-            padding: 40px;
+            background: #ffffff;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
             border: 1px solid #eee;
         }
 
-        .contact-info {
-            background-color: var(--primary-color);
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .contact-box h3, .contact-info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
         }
 
-        .contact-info h2 {
+        /* Right Side Box */
+        .contact-info-box {
+            flex: 1;
+            min-width: 300px;
+            background: var(--primary-color); /* Matches your green theme */
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+        }
+
+        .contact-info-box h3 {
             color: var(--white);
-            margin-bottom: 30px;
         }
         
-        .contact-info h2::after {
-             background: var(--accent-color);
+        .contact-info-box .info-icon {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .info-item {
-            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 15px;
+        }
+
+        .info-item div strong {
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .info-item div p {
+            margin: 0;
             font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        .info-icon {
-            font-size: 1.5rem;
-            background: rgba(255,255,255,0.2);
-            padding: 10px;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-btn {
-            background: var(--white);
-            color: var(--primary-color);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .social-btn:hover {
-            background: var(--accent-color);
-            color: var(--primary-color);
-        }
-
-        /* Form Styles */
+        /* Input styling updates (consistent with request) */
         .form-group {
             margin-bottom: 20px;
         }
@@ -299,13 +296,13 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #555;
+            color: #444;
         }
 
         .form-group input, 
         .form-group textarea {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-family: inherit;
@@ -321,14 +318,14 @@
 
         .btn-submit {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background-color: var(--primary-color);
-            color: var(--white);
+            color: white;
             border: none;
             border-radius: 5px;
-            font-size: 1.1rem;
-            cursor: pointer;
+            font-size: 1rem;
             font-weight: 600;
+            cursor: pointer;
             transition: background 0.3s;
         }
 
@@ -336,25 +333,15 @@
             background-color: var(--primary-dark);
         }
 
-        /* Footer */
-        footer {
-            background: #222;
-            color: #fff;
-            text-align: center;
-            padding: 30px;
-            font-size: 0.9rem;
-        }
-
-        /* --- RESPONSIVE --- */
+        /* Responsive Mobile Styling */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            
             .contact-wrapper {
                 flex-direction: column;
             }
             
-            .contact-info {
-                order: -1; /* Puts info on top on mobile */
+            .contact-info-box {
+                background-color: #1e5e39; /* Darker green for contrast on mobile if needed */
+                order: -1; /* Puts info box on top on mobile */
             }
         }
     </style>
