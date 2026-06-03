@@ -186,6 +186,44 @@
             color: var(--primary-color);
         }
 
+        .contact-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px;
+    margin: auto;
+    align-items: flex-start;
+}
+
+.contact-container,
+.contact-info {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.contact-info h2 {
+    color: #2E8B57;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-info a {
+    color: #2E8B57;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+    }
+}
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -289,7 +327,57 @@
     </section>
 
     <!-- SECTION 3: CONTACT -->
-    <section id="contact">
+    <div class="contact-wrapper">
+
+```
+<div class="contact-container">
+    <h2>Contact Us</h2>
+
+    <form id="donationForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+</div>
+
+<div class="contact-info">
+    <h2>Connect With Us</h2>
+
+    <p>📧 Email: info@graciousgivingfoundation.org</p>
+
+    <p>📱 Phone: +234 XXX XXX XXXX</p>
+
+    <p>
+        📘 Facebook:
+        <a href="https://facebook.com/yourpage" target="_blank">
+            Gracious Giving Foundation
+        </a>
+    </p>
+
+    <p>
+        📸 Instagram:
+        <a href="https://instagram.com/yourpage" target="_blank">
+            @graciousgivingfoundation
+        </a>
+    </p>
+</div>
+```
+
+</div>
+<section id="contact">
         <div class="contact-container">
             <h2>To donate contact us</h2>
             <form id="donationForm" onsubmit="handleSubmit(event)">
