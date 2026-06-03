@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gracious Giving Foundation</title>
-
+    <title>Gracious Giving Foundation - Donate</title>
     <style>
+        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary-color: #2E8B57;
-            --secondary-color: #FFD700;
+            --primary-color: #2E8B57; /* SeaGreen */
+            --secondary-color: #FFD700; /* Gold */
+            --text-color: #333333;
             --light-bg: #f9f9f9;
-            --white: #fff;
+            --white: #ffffff;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         * {
@@ -20,268 +22,319 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            color: #333;
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
         }
 
-        /* HEADER */
+        a { text-decoration: none; }
+
+        /* --- LOGO & NAVIGATION --- */
         header {
+            background-color: var(--white);
+            padding: 20px 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo img {
-            height: 80px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+        .logo img {
+    height: 80px;
+    width: auto;
+    display: block;
+}
 
         .btn-donate-header {
-            background: var(--primary-color);
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--white);
             padding: 10px 20px;
             border-radius: 5px;
-            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
         }
 
-        /* ABOUT */
+        .btn-donate-header:hover {
+            background-color: #1e5e39;
+        }
+
+        /* --- SECTION 1: ABOUT --- */
         #about {
             padding: 60px 5%;
             max-width: 900px;
-            margin: auto;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        #about h1 {
+        .about-content {
+            text-align: left;
+            background: var(--white);
+        }
+
+        .about-content h1 {
+            font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 20px;
+            text-align: center;
         }
 
-        #about p {
+        .about-content p {
             margin-bottom: 15px;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            color: #555;
         }
 
-        /* GALLERY */
+        .founder-quote {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #444;
+            font-size: 1.2rem;
+        }
+
+        .donation-box {
+            background-color: var(--light-bg);
+            border: 2px solid var(--secondary-color);
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .donation-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .bank-details {
+            font-family: monospace;
+            background: #eee;
+            padding: 10px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        /* --- NEW SECTION: GALLERY --- */
         #gallery {
             padding: 60px 5%;
-            background: var(--light-bg);
+            background-color: var(--white);
             text-align: center;
         }
 
         #gallery h2 {
-            margin-bottom: 30px;
             color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2rem;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .gallery-item {
-            height: 250px;
+            position: relative;
             overflow: hidden;
             border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            height: 250px; /* Fixed height for uniformity */
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: 0.3s;
+            object-fit: cover; /* Ensures image covers the box without stretching */
+            transition: transform 0.3s ease;
         }
 
-        .gallery-item img:hover {
-            transform: scale(1.1);
+        .gallery-item:hover img {
+            transform: scale(1.1); /* Zoom effect on hover */
         }
 
-        /* LIGHTBOX */
-        #lightbox {
-            position: fixed;
-            display: none;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        #lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-        }
-
-        /* CONTACT */
+        /* --- SECTION 2: CONTACT --- */
         #contact {
+            background-color: var(--light-bg);
             padding: 60px 5%;
-            background: white;
         }
 
-        .contact-wrapper {
-            display: flex;
-            gap: 30px;
-            max-width: 1100px;
-            margin: auto;
-            flex-wrap: wrap;
-        }
-
-        .contact-container,
-        .contact-info {
-            flex: 1;
-            min-width: 280px;
-            background: white;
-            padding: 30px;
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        .form-group {
-            margin-bottom: 15px;
+        .contact-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
         }
 
-        input, textarea {
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input, 
+        .form-group textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
         }
 
-        textarea {
-            height: 120px;
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
         }
 
         .btn-submit {
             width: 100%;
-            padding: 12px;
-            background: var(--primary-color);
-            color: white;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: var(--white);
             border: none;
             border-radius: 5px;
+            font-size: 1.1rem;
             cursor: pointer;
+            transition: background 0.3s;
         }
 
-        .contact-info a {
-            color: var(--primary-color);
-            font-weight: bold;
+        .btn-submit:hover {
+            background-color: #1e5e39;
         }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .contact-wrapper {
-                flex-direction: column;
-            }
+            .about-content h1 { font-size: 2rem; }
+            .contact-container { padding: 20px; }
+            header { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-<header>
-    <div class="logo">
-        <img src="15a20796-f246-4189-bc36-fbaa580565fd.JPG" alt="Logo">
-    </div>
+    <!-- HEADER / LOGO -->
+    <header>
+        <div class="">Gracious Giving Foundation</div>
+        <a href="#contact" class="btn-donate-header" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact Us</a>
+    </header>
 
-    <a href="#contact" class="btn-donate-header">Contact Us</a>
-</header>
+    <!-- SECTION 1: ABOUT -->
+    <section id="about">
+        <div class="about-content">
+            <h1>Gracious Giving Foundation</h1>
+            
+            <p><strong>Founded in 2007 by Pastor (Mrs.) Funke Adebayo</strong>, Gracious Giving Foundation is a faith-based charitable organization dedicated to supporting widows, vulnerable families, and the less privileged, particularly in Nigeria. The Foundation was established to demonstrate God's love through practical acts of compassion, generosity, and community service.</p>
 
-<!-- ABOUT -->
-<section id="about">
-    <h1>Gracious Giving Foundation</h1>
-    <p>We support widows and vulnerable families through charity and outreach programs.</p>
-</section>
+            <p>Giving to widows and the needy is at the heart of the Foundation's mission. Through financial assistance, food distribution, encouragement, and community outreach programs, Gracious Giving Foundation continues to bring hope, dignity, and relief to those facing hardship.</p>
 
-<!-- GALLERY -->
-<section id="gallery">
-    <h2>Our Impact in Pictures</h2>
+            <blockquote class="founder-quote">
+                "Honor widows who are truly in need." — 1 Timothy 5:3
+            </blockquote>
 
-    <div class="gallery-grid">
-        <div class="gallery-item">
-            <img src="unnamed.jpg" onclick="openImage(this)">
+            <p>During one of her visits to Nigeria, Pastor Funke Adebayo spent time with widows supported by the Foundation, blessing them with cash gifts, food supplies, and words of encouragement. It was a joyful and memorable occasion that reflected the Foundation's commitment to honoring and caring for widows.</p>
+
+            <p>As a Minister of the Gospel, philanthropist, and transformational community leader, Pastor Funke Adebayo leads with grace, compassion, and purpose. Her vision is to empower lives, restore hope, and build stronger communities through faith-driven service and humanitarian outreach.</p>
+
+            <p>Today, Gracious Giving Foundation continues to impact lives, offering practical support to those in need and inspiring others to make a difference through acts of kindness and generosity.</p>
+
         </div>
+    </section>
 
-        <div class="gallery-item">
-            <img src="image0.jpeg" onclick="openImage(this)">
+    <!-- SECTION 2: GALLERY (PICTURES) -->
+    <section id="gallery">
+        <h2>Our Impact in Pictures</h2>
+        <div class="gallery-grid">
+            <!-- Image 1 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Charity Work">
+            </div>
+            <!-- Image 2 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Food Distribution">
+            </div>
+            <!-- Image 3 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Community Outreach">
+            </div>
+            <!-- Image 4 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Giving Hand">
+            </div>
+            <!-- Image 5 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140840e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Volunteers">
+            </div>
+            <!-- Image 6 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Donation Box">
+            </div>
         </div>
+    </section>
 
-        <div class="gallery-item">
-            <img src="image1.jpeg" onclick="openImage(this)">
-        </div>
-    </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeImage()">
-    <img id="lightbox-img">
-</div>
-
-<!-- CONTACT -->
-<section id="contact">
-    <div class="contact-wrapper">
-
+    <!-- SECTION 3: CONTACT -->
+    <section id="contact">
         <div class="contact-container">
-            <h2>Contact Us</h2>
-
-            <form onsubmit="handleSubmit(event)">
+            <h2>Get in Touch</h2>
+            <form id="donationForm" onsubmit="handleSubmit(event)">
                 <div class="form-group">
-                    <input type="text" id="name" placeholder="Name" required>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Full Name" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="email" id="email" placeholder="Email" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email Address" required>
                 </div>
 
                 <div class="form-group">
-                    <textarea id="message" placeholder="Message" required></textarea>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
                 </div>
 
-                <button class="btn-submit" type="submit">Send</button>
+                <button type="submit" class="btn-submit">Send Message</button>
             </form>
         </div>
+    </section>
 
-        <div class="contact-info">
-            <h2>Connect With Us</h2>
-            <p>📧 info@graciousgiving.org</p>
-            <p>📱 +234 XXX XXX XXXX</p>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
 
-            <p>📘 <a href="#">Facebook</a></p>
-            <p>📸 <a href="#">Instagram</a></p>
-        </div>
-
-    </div>
-</section>
-
-<script>
-function openImage(img) {
-    document.getElementById("lightbox").style.display = "flex";
-    document.getElementById("lightbox-img").src = img.src;
-}
-
-function closeImage() {
-    document.getElementById("lightbox").style.display = "none";
-}
-
-function handleSubmit(event) {
-    event.preventDefault();
-    alert("Message sent!");
-}
-</script>
+            alert(`Thank you, ${name}! Your message has been sent. We will contact you at ${email} shortly.`);
+            
+            document.getElementById('donationForm').reset();
+        }
+    </script>
 
 </body>
 </html>
