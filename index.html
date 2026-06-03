@@ -348,23 +348,20 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+        <!-- HEADER -->
     <header>
         <div class="logo-container">
-            <!-- Using a placeholder for logo, replace src with your actual logo file -->
             <img src="logo.jpg" class="logo" alt="Gracious Giving Logo" onerror="this.style.display='none'">
             <span class="brand-name">Gracious Giving</span>
         </div>
-        <a href="#contact" class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); return false;">
-            Contact Us
-        </a>
+        <a href="#contact" class="btn btn-primary scroll-btn">Contact Us</a>
     </header>
 
     <!-- HERO SECTION -->
     <div class="hero">
         <h1>Giving Hope to the Needy</h1>
         <p>Empowering widows and vulnerable families through faith, compassion, and action.</p>
-        <a href="#contact" class="btn" style="background: var(--accent-color); color: #222;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); return false;">Get Involved</a>
+        <a href="#contact" class="btn scroll-btn" style="background: var(--accent-color); color: #222;">Get Involved</a>
     </div>
 
     <!-- SECTION 1: ABOUT -->
@@ -389,27 +386,27 @@
     <section id="gallery">
         <h2 class="section-title">Our Impact in Pictures</h2>
         <div class="gallery-grid">
-            <!-- Image 1 -->
             <div class="gallery-item">
                 <img src="image1.jpg" alt="Widows Support Program" onerror="this.src='https://via.placeholder.com/400x300?text=Charity+Work'">
             </div>
-            <!-- Image 2 -->
             <div class="gallery-item">
                 <img src="unnamed.jpg" alt="Food Distribution" onerror="this.src='https://via.placeholder.com/400x300?text=Food+Distribution'">
             </div>
-         <div class="gallery-item">
-                <img src="image0.jpeg" alt="Food Distribution" onerror="this.src='https://via.placeholder.com/400x300?text=Food+Distribution'">
+            <div class="gallery-item">
+                <img src="image3.jpg" alt="Community Outreach" onerror="this.src='https://via.placeholder.com/400x300?text=Community+Outreach'">
             </div>
-        <!-- CONTACT SECTION -->
+        </div>
+    </section>
+
+    <!-- SECTION 3: CONTACT -->
     <section id="contact">
-        <h2 class="section-title">send message to donate </h2>
+        <h2 class="section-title">Get In Touch</h2>
         
         <div class="contact-wrapper">
-            
-            <!-- Left Side: Contact Form -->
+            <!-- Contact Form -->
             <div class="contact-box">
                 <h3>Send Us a Message</h3>
-                <form action="#" method="POST">
+                <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" placeholder="Enter your full name" required>
@@ -429,13 +426,12 @@
                 </form>
             </div>
 
-            <!-- Right Side: Contact Info -->
+            <!-- Contact Info -->
             <div class="contact-info-box">
                 <h3>Contact Details</h3>
                 <p style="margin-bottom: 20px; opacity: 0.9;">Feel free to reach out to us for partnerships, donations, or volunteering.</p>
                 
                 <div class="info-list">
-                    <!-- Phone Number -->
                     <div class="info-item">
                         <span class="info-icon">📱</span>
                         <div>
@@ -444,7 +440,6 @@
                         </div>
                     </div>
 
-                    <!-- Email -->
                     <div class="info-item">
                         <span class="info-icon">✉️</span>
                         <div>
@@ -453,7 +448,6 @@
                         </div>
                     </div>
 
-                    <!-- Instagram -->
                     <div class="info-item">
                         <span class="info-icon">📸</span>
                         <div>
@@ -462,7 +456,6 @@
                         </div>
                     </div>
 
-                    <!-- Facebook -->
                     <div class="info-item">
                         <span class="info-icon">👤</span>
                         <div>
@@ -472,6 +465,78 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Gracious Giving Foundation. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. SMOOTH SCROLLING FOR NAVIGATION BUTTONS
+        document.querySelectorAll('.scroll-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 2. CONTACT FORM SUBMISSION
+        const contactForm = document.getElementById('contactForm');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop page refresh
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                // Show success message (In a real app, you'd send this to a server)
+                alert(`Thank you, ${name}! \n\nYour message has been sent successfully.\n\nWe will contact you at ${email} shortly.`);
+                
+                // Reset the form
+                contactForm.reset();
+            });
+        }
+
+        // 3. HEADER SCROLL EFFECT (Optional: adds shadow when scrolling)
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = "0 5px 20px rgba(0,0,0,0.2)";
+            } else {
+                header.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
+            }
+        });
+
+        // 4. INSTAGRAM BUTTON CLICK (Opens Instagram - Replace with actual link)
+        document.querySelectorAll('.info-item').forEach(item => {
+            const text = item.querySelector('strong').innerText;
+            if (text === 'Instagram') {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', () => {
+                    window.open('https://instagram.com/graciousgiving', '_blank');
+                });
+            }
+            if (text === 'Facebook') {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', () => {
+                    window.open('https://facebook.com/graciousgiving', '_blank');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
