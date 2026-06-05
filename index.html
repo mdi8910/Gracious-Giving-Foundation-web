@@ -414,7 +414,9 @@
             <!-- Contact Form -->
             <div class="contact-box">
                 <h3>Send Us a Message</h3>
-                <form id="contactForm">
+                <form id="contactForm"
+      action="https://formspree.io/f/xdavkqkl"
+      method="POST">
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" placeholder="Enter your full name" required>
@@ -506,24 +508,28 @@
         });
 
         // 2. CONTACT FORM SUBMISSION
-        const contactForm = document.getElementById('contactForm');
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Stop page refresh
-                
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-                
-                // Show success message (In a real app, you'd send this to a server)
-                alert(`Thank you, ${name}! \n\nYour message has been sent successfully.\n\nWe will contact you at ${email} shortly.`);
-                
-                // Reset the form
-                contactForm.reset();
-            });
+       const contactForm = document.getElementById('contactForm');
+
+contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+
+    const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+            Accept: "application/json"
         }
+    });
+
+    if (response.ok) {
+        alert("Thank you! Your message has been sent.");
+        contactForm.reset();
+    } else {
+        alert("There was a problem sending your message.");
+    }
+});
 
         // 3. HEADER SCROLL EFFECT (Optional: adds shadow when scrolling)
         window.addEventListener('scroll', function() {
